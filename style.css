@@ -1,0 +1,36 @@
+:root {
+  --bg:#f4f0eb; --card:#fff; --accent:#2d6a4f; --accent2:#52b788; --soft:#e9f5f0;
+  --text:#1b2d27; --muted:#7a9e91; --danger:#d62828; --warn:#e07a5f; --border:#dde8e3;
+}
+
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; align-items:center; margin:0; }
+
+nav { width:100%; padding:20px 40px; display:flex; gap:10px; background:var(--card); border-bottom:1px solid var(--border); position:sticky; top:0; }
+.logo-icon { font-size:1.5rem; } .logo-text { font-family:'DM Serif Display',serif; font-size:1.4rem; color:var(--accent); }
+.logo-tag { margin-left:auto; font-size:0.75rem; color:var(--muted); background:var(--soft); padding:4px 10px; border-radius:20px; }
+
+.card { background:var(--card); border-radius:20px; box-shadow:0 4px 32px rgba(45,106,79,0.1); padding:36px; max-width:560px; width:calc(100% - 40px); margin-bottom:28px; }
+
+.step { display:none; } .step.active { display:block; }
+
+.sym-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:10px; }
+.sym-btn { display:flex; align-items:center; gap:8px; padding:12px 14px; border-radius:12px; border:1.5px solid var(--border); background:var(--bg); cursor:pointer; }
+.sym-btn.selected { border-color:var(--accent); background:var(--soft); color:var(--accent); font-weight:600; }
+
+.btn-row { display:flex; gap:12px; margin-top:28px; }
+.btn { padding:13px 28px; border-radius:12px; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:600; }
+.btn-primary { background:var(--accent); color:#fff; flex:1; } 
+.btn-secondary { background:var(--bg); color:var(--muted); border:1.5px solid var(--border); }
+
+#result { display:none; }
+.diag-item { border-radius:14px; padding:16px 20px; border-left:4px solid var(--accent2); background:var(--soft); margin-bottom:12px; }
+.diag-item.high { border-color:var(--warn); background:#fdf2ef; }
+.diag-item.medium { border-color:#f4b942; background:#fdf8ef; }
+.conf-badge { font-size:0.72rem; font-weight:700; padding:2px 8px; border-radius:99px; text-transform:uppercase; margin-top:6px; display:inline-block; }
+.high .conf-badge { background:#f8d6cc; color:var(--danger); }
+.medium .conf-badge { background:#fdecc2; color:#b45309; }
+.low .conf-badge { background:var(--border); color:var(--muted); }
+
+.disclaimer { background:#fff8f4; border:1.5px solid #f0d4c2; border-radius:12px; padding:14px 18px; font-size:0.82rem; color:#8a5c3f; margin-top:20px; }
+
+footer { font-size:0.75rem; color:var(--muted); padding:20px; text-align:center; }

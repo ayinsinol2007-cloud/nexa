@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>HealthSnap</title>
+    <link rel="stylesheet" href= "style.css">
+</head>    
+<meta charset="UTF-8" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>QuickCare – AI Health Check</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+<!-- Link external CSS -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav>
+  <span class="logo-icon">🩺</span>
+  <span class="logo-text">QuickCare</span>
+  <span class="logo-tag">AI Health Assistant</span>
+</nav>
+
+<div class="hero">
+  <h1>How are you <em>feeling</em> today?</h1>
+  <p>Answer a few quick questions and our AI will analyse your symptoms and suggest possible conditions.</p>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="step-label">Step 1 of 4</span>
+    <span id="step-pct">25%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="prog" style="width:25%"></div></div>
+</div>
+
+<!-- Survey Card -->
+<div class="card" id="survey-card">
+
+  <!-- STEP 1: Symptoms -->
+  <div class="step active" id="s1">
+    <div class="step-label">Step 1 · Symptoms</div>
+    <div class="step-q">Which symptoms are you experiencing?</div>
+    <div class="sym-grid" id="sym-grid">
+      <!-- JS will generate symptom buttons here -->
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="goStep(2)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Severity & Duration -->
+  <div class="step" id="s2">
+    <div class="step-label">Step 2 · Severity</div>
+    <div class="step-q">How severe are your symptoms overall?</div>
+    <div class="slider-wrap">
+      <div class="sev-labels"><span>Mild</span><span>Moderate</span><span>Severe</span></div>
+      <input type="range" id="severity" min="1" max="10" value="5" oninput="document.getElementById('sev-val').textContent=this.value+'/10'">
+      <div class="sev-value" id="sev-val">5/10</div>
+    </div>
+    <div style="margin-top:24px">
+      <label>How long have you had these symptoms?</label>
+      <select id="duration">
+        <option value="">Select duration…</option>
+        <option>Less than 24 hours</option>
+        <option>1–3 days</option>
+        <option>4–7 days</option>
+        <option>1–2 weeks</option>
+        <option>More than 2 weeks</option>
+      </select>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goStep(3)">Next →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: Profile -->
+  <div class="step" id="s3">
+    <div class="step-label">Step 3 · Your Profile</div>
+    <div class="step-q">Tell us a bit about yourself</div>
+    <div class="twin">
+      <div>
+        <label>Age</label>
+        <input type="number" id="age" placeholder="e.g. 28" min="1" max="120"/>
+      </div>
+      <div>
+        <label>Biological Sex</label>
+        <div class="radio-group" id="sex-group">
+          <div class="radio-btn" onclick="selectSex(this,'Male')">Male</div>
+          <div class="radio-btn" onclick="selectSex(this,'Female')">Female</div>
+          <div class="radio-btn" onclick="selectSex(this,'Other')">Other</div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px">
+      <label>Any additional notes? (medications, allergies, medical history…)</label>
+      <textarea id="notes" placeholder="Optional — share anything that might help…"></textarea>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-secondary" onclick="goStep(2)">← Back</button>
+      <button class="btn btn-primary" onclick="goStep(4)">Analyse →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: Loading -->
+  <div class="step" id="s4">
+    <div class="loading-wrap">
+      <div class="pulse"></div>
+      <p>AI is analysing your symptoms…<br>This takes just a moment.</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- Result Card -->
+<div class="card" id="result">
+  <div class="result-header">
+    <div class="result-icon">🔬</div>
+    <div>
+      <div class="result-title">Your AI Diagnosis</div>
+      <div class="result-sub">Based on your reported symptoms</div>
+    </div>
+  </div>
+  <div class="diag-list" id="diag-list"></div>
+  <div class="disclaimer">
+    <strong>⚠ Important:</strong> This is an AI-generated suggestion and <strong>not</strong> a medical diagnosis. Always consult a qualified healthcare professional.
+  </div>
+  <button class="btn btn-primary btn-restart" onclick="restart()">🔄 Start New Check</button>
+</div>
+
+<footer>QuickCare © 2025 · For informational purposes only · Not a medical service</footer>
+
+<!-- Link external JS -->
+<script src="script.js"></script>
+</body>
+</html>
